@@ -19,10 +19,12 @@ async function fetchBrave(
       'Accept-Encoding':      'gzip',
       'X-Subscription-Token': process.env['BRAVE_API_KEY']!,
     },
+    signal: AbortSignal.timeout(15_000),
   });
 
   if (!response.ok) {
-    throw new Error(`Brave API error: ${response.status} ${response.statusText}`);
+    const body = await response.text().catch(() => '');
+    throw new Error(`Brave API error: ${response.status} ${response.statusText}${body ? ` — ${body}` : ''}`);
   }
 
   const data = await response.json() as { web?: { results?: Record<string, unknown>[] } };
@@ -43,9 +45,14 @@ export async function searchBrave(
   const randomOffset = [0, 5, 10][Math.floor(Math.random() * 3)];
 
   if (randomOffset > 0) {
-    const results = await fetchBrave(query, count, randomOffset);
-    if (results.length >= 5) return results;
-    console.log(`[brave] Only ${results.length} results at offset=${randomOffset}, retrying at offset=0`);
+    try {
+      const results = await fetchBrave(query, count, randomOffset);
+      if (results.length >= 5) return results;
+      console.log(`[brave] Only ${results.length} results at offset=${randomOffset}, retrying at offset=0`);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.log(`[brave] offset=${randomOffset} failed (${message}), retrying at offset=0`);
+    }
   }
 
   return fetchBrave(query, count, 0);

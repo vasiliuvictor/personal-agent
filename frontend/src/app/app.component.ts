@@ -10,10 +10,12 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
   template: `
     @if (auth.isAuthenticated()) {
       <app-navbar />
-    }
-    <main class="container" style="padding-top: 1.75rem; padding-bottom: 3rem; position: relative; z-index: 1;">
+      <main class="container" style="padding-top: 1.75rem; padding-bottom: 3rem; position: relative; z-index: 1;">
+        <router-outlet />
+      </main>
+    } @else {
       <router-outlet />
-    </main>
+    }
   `,
 })
 export class AppComponent {
