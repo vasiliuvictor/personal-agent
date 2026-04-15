@@ -48,7 +48,7 @@ import { Agent } from '../../../shared/models';
                 }
               </p>
             </div>
-            <div style="display: flex; gap: 0.5rem; flex-shrink: 0;">
+            <div class="agent-actions">
               <a [routerLink]="['/agents', agent.id, 'edit']" class="btn btn-secondary btn-sm">Edit</a>
               <button class="btn btn-danger btn-sm" (click)="deleteAgent(agent.id)">Delete</button>
             </div>
@@ -71,6 +71,17 @@ import { Agent } from '../../../shared/models';
           0 4px 12px rgba(29, 45, 53, 0.06),
           inset 0 1px 0 rgba(255, 255, 255, 0.98);
       }
+    }
+
+    .agent-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 540px) {
+      .agent-row { flex-direction: column; }
+      .agent-actions { align-self: flex-start; }
     }
 
     .agent-name {

@@ -42,7 +42,7 @@ export async function searchBrave(
 ): Promise<BraveSearchResult[]> {
   // Use a random offset to vary results across runs.
   // Fall back to offset 0 if the offset page returned nothing.
-  const randomOffset = [0, 5, 10][Math.floor(Math.random() * 3)];
+  const randomOffset = [0, 5, 9][Math.floor(Math.random() * 3)];
 
   if (randomOffset > 0) {
     try {

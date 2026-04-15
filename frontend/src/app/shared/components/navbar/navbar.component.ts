@@ -8,7 +8,7 @@ import { AuthService } from '../../../core/auth/auth.service';
   imports: [RouterLink, RouterLinkActive],
   template: `
     <nav>
-      <div class="container" style="display: flex; align-items: center; height: 60px; gap: 1.5rem;">
+      <div class="container nav-inner">
         <a routerLink="/dashboard" class="brand">AgentScout</a>
 
         <div class="nav-links">
@@ -40,6 +40,14 @@ import { AuthService } from '../../../core/auth/auth.service';
       box-shadow: 0 4px 24px rgba(29, 45, 53, 0.2);
     }
 
+    /* Inner row — CSS class so media queries can override it */
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      height: 60px;
+      gap: 1.5rem;
+    }
+
     .brand {
       font-weight: 800;
       font-size: 1.15rem;
@@ -55,6 +63,9 @@ import { AuthService } from '../../../core/auth/auth.service';
     }
 
     .nav-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: rgba(255, 255, 255, 0.65);
       font-size: 0.875rem;
       font-weight: 500;
@@ -84,6 +95,8 @@ import { AuthService } from '../../../core/auth/auth.service';
       margin-left: auto;
       border-left: 1px solid rgba(255, 255, 255, 0.1);
       padding-left: 1rem;
+      min-width: 0;
+      flex-shrink: 0;
     }
 
     .user-email {
@@ -105,10 +118,66 @@ import { AuthService } from '../../../core/auth/auth.service';
       font-size: 0.8rem;
       font-weight: 500;
       transition: all 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
 
       &:hover {
         background: rgba(255, 255, 255, 0.15);
         color: #fff;
+      }
+    }
+
+    /* ── Tablet: hide email ───────────────────── */
+    @media (max-width: 600px) {
+      .user-email { display: none; }
+      .nav-link { padding: 0.35rem 0.6rem; font-size: 0.82rem; }
+    }
+
+    /* ── Mobile (≤ 480px): two-row layout ──────
+       Row 1: Brand  ·  Sign out
+       Row 2: Dashboard  ·  My Agents           */
+    @media (max-width: 480px) {
+      .nav-inner {
+        height: auto;
+        flex-wrap: wrap;
+        gap: 0;
+        padding-top: 0.45rem;
+        padding-bottom: 0;
+      }
+
+      .brand {
+        flex: 1;
+        font-size: 1.05rem;
+      }
+
+      /* user-area sits on row 1 beside brand */
+      .user-area {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+        gap: 0;
+      }
+
+      /* nav-links drop to row 2, full width */
+      .nav-links {
+        order: 3;
+        width: 100%;
+        gap: 0.15rem;
+        padding: 0.35rem 0 0.4rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: 0.4rem;
+      }
+
+      .nav-link {
+        flex: 1;
+        font-size: 0.82rem;
+        padding: 0.38rem 0.5rem;
+        text-align: center;
+      }
+
+      .signout-btn {
+        font-size: 0.78rem;
+        padding: 0.28rem 0.65rem;
       }
     }
   `],

@@ -64,8 +64,9 @@ import { Insight } from '../../../shared/models';
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 0.75rem;
       margin-bottom: 0.9rem;
+      flex-wrap: wrap;
     }
 
     .meta-date  { font-size: 0.8rem; color: #9db5c0; }
@@ -116,7 +117,7 @@ import { Insight } from '../../../shared/models';
         &::before { content: '→ '; color: #B5838D; margin-right: 0.2rem; }
       }
 
-      a { color: #2d5f72; &:hover { color: #264653; } }
+      a { color: #2d5f72; word-break: break-all; &:hover { color: #264653; } }
     }
   `],
 })

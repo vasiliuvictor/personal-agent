@@ -23,6 +23,16 @@
 *::before,
 *::after { box-sizing: border-box; }
 
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 { font-size: 1.65rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1.1rem; }
+
 html { height: 100%; }
 
 body {
@@ -30,6 +40,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
   color: var(--text-1);
+  overflow-x: hidden;
 
   /*
    * Smooth white → coffee gradient using only palette tints:
@@ -53,6 +64,19 @@ a {
   &:hover { color: var(--teal); text-decoration: underline; }
 }
 
+/* ── Main content wrapper ───────────────── */
+.main-content {
+  padding-top: 1.75rem;
+  padding-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 480px) {
+    padding-top: 1.25rem;
+    padding-bottom: 2rem;
+  }
+}
+
 /* ── Layout ─────────────────────────────── */
 .container {
   max-width: 1100px;
@@ -60,6 +84,10 @@ a {
   padding: 0 1.25rem;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 400px) {
+    padding: 0 1rem;
+  }
 }
 
 /* ── Glass Card ──────────────────────────── */
@@ -214,6 +242,9 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 1rem;
   margin-bottom: 1.75rem;
 
   h1 {
@@ -222,6 +253,10 @@ a {
     margin: 0;
     color: var(--teal);
     letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.35rem; }
   }
 }
 

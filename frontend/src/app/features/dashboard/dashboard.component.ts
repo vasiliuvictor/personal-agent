@@ -12,7 +12,7 @@ import { Insight } from '../../shared/models';
     <div class="page-header">
       <h1>Dashboard</h1>
       @if (total() > 0 || !showAll()) {
-        <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
           @if (total() > 0) {
             <span style="font-size: 0.875rem; color: #9db5c0;">
               @if (showAll()) {
