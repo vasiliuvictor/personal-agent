@@ -6,6 +6,7 @@ dotenv.config();
 import healthRouter from './routes/health.routes';
 import agentsRouter from './routes/agents.routes';
 import insightsRouter from './routes/insights.routes';
+import statsRouter from './routes/stats.routes';
 import triggerRouter from './routes/trigger.routes';
 import { runDueAgents } from './services/scheduler.service';
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use('/api/health', healthRouter);
 app.use('/api/agents', agentsRouter);
 app.use('/api/insights', insightsRouter);
+app.use('/api/stats', statsRouter);
 app.use('/api/trigger-agents', triggerRouter); // kept for manual testing
 
 // ── Internal scheduler ────────────────────────────────────────────────────────

@@ -33,3 +33,24 @@ export interface InsightsResponse {
   page: number;
   limit: number;
 }
+
+export interface AgentStat {
+  agentId:   string;
+  agentName: string;
+  lastRunAt: string | null;
+  total:     number;
+  unread:    number;
+}
+
+export interface DailyCount {
+  date:  string;  // YYYY-MM-DD
+  count: number;
+}
+
+export interface StatsResponse {
+  totalAgents:     number;
+  totalInsights:   number;
+  unreadInsights:  number;
+  insightsPerAgent: AgentStat[];
+  insightsByDay:   DailyCount[];
+}

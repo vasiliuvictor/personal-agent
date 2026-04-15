@@ -16,6 +16,9 @@ import { AuthService } from '../../../core/auth/auth.service';
             [routerLinkActiveOptions]="{exact: true}" class="nav-link">
             Dashboard
           </a>
+          <a routerLink="/insights" routerLinkActive="nav-active" class="nav-link">
+            Insights
+          </a>
           <a routerLink="/agents" routerLinkActive="nav-active" class="nav-link">
             My Agents
           </a>
