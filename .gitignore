@@ -1,5 +1,6 @@
 # Angular specific
 /frontend/dist/
+/backend/dist/
 /out-tsc/
 /tmp/
 /coverage/
@@ -13,6 +14,7 @@
 /frontend/node_modules/
 /frontend/package-lock.json
 /backend/node_modules/
+/backend/package-lock.json
 # /backend/package-lock.json  — keep tracked so Render can use npm ci
 /yarn.lock
 
