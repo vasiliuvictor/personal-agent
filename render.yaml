@@ -3,7 +3,7 @@ services:
     name: agentscout-backend
     env: node
     rootDir: backend
-    buildCommand: npm install && npm run build
+    buildCommand: npm ci && npm run build
     startCommand: node dist/index.js
     plan: free
     envVars:
@@ -32,7 +32,7 @@ services:
     name: agentscout-frontend
     env: static
     rootDir: frontend
-    buildCommand: npm install && npm run build:prod
+    buildCommand: npm ci && npm run build:prod
     staticPublishPath: dist/frontend/browser
     headers:
       - path: /*
