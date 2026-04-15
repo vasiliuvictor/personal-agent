@@ -2,9 +2,10 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { BraveSearchResult } from '../types';
 
 const genAI = new GoogleGenerativeAI(process.env['GEMINI_API_KEY']!);
+const GEMINI_MODEL = process.env['GEMINI_MODEL'] ?? 'gemini-2.5-flash-lite';
 
 export async function generateInsight(query: string, results: BraveSearchResult[]): Promise<string> {
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
+  const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
 
   const formattedResults = results
     .map((r, i) => `[${i + 1}] Title: ${r.title}\nURL: ${r.url}\nSnippet: ${r.description}`)
