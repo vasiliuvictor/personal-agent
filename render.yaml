@@ -34,7 +34,6 @@ services:
     rootDir: frontend
     buildCommand: npm install && npm run build:prod
     staticPublishPath: dist/frontend/browser
-    plan: free
     headers:
       - path: /*
         name: Cache-Control
